@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html leng="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>게시판 글 작성</title>
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <style>
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid #5D5FEF;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+
+}
+input:focus{
+    outline: none;
+    border-bottom: 2px solid #FF7F50;
+}
+
+textarea {
+    width: 100%;
+    height :500px;
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    display: block;
+    border: none;
+    border-bottom: 2px solid #5D5FEF;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+textarea:focus {
+    outline: none;
+    border: 2px solid #FF7F50;
+}
+
+
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h2>게시판 글 작성</h2>
+
+
+
+  <div class="card shadow mb-4">
+    <form  action="/board" th:method="${method} ?: 'post'">
+      <div class="card-body" style="min-height: 500px;height: 80%;">
+        <div class="input_group">
+          <label for="title">제목:</label>
+          <input class="input" type="text" id="title" name="title" required>
+        </div>
+        <div>
+          <label for="author">작성자:</label>
+          <input type="text" id="author" name="author" required disabled="disabled" value="bgwbgw100">
+        </div>
+        <div >
+          <label for="content">내용:</label>
+          <textarea id="content" name="content" rows="4"  required ></textarea>
+        </div>
+        <div>
+          <button class="btn" type="submit" style="float:right;">글 작성</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
