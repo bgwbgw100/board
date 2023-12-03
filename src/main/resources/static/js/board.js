@@ -28,6 +28,14 @@ class Board{
         };
 
         this.#set = set;
+        if(!this.#set.page){
+            this.#set.page = 1;
+        }
+        if(!this.#set.countRow){
+            this.#set.countRow = 10;
+        }
+
+
     }
 
     makeCol(){
@@ -48,6 +56,7 @@ class Board{
             console.error("Not Found URL By Board Fetch")
             return
         }
+        url += "?page"+this.#set.page+"&countRow"+this.#set.countRow;
 
         method = method ? method : "GET";
 
@@ -73,6 +82,7 @@ class Board{
         const col = this.#set.col
         const tbody = document.querySelector(`#${this.#nameStr}ColBody`)
         tbody.innerHTML="";
+
         let tagStr = "";
         data.forEach(obj =>{
             tagStr += "<tr>";

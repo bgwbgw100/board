@@ -21,9 +21,9 @@ public class BoardResponseController {
     private final BoardService boardService;
 
     @GetMapping("list")
-    public List test(){
+    public List test( @RequestParam Map<String,Object> paramMap){
 
-        return boardService.getBoardList();
+        return boardService.getBoardList(paramMap);
     }
     @PutMapping("board")
     public void putBoard(){

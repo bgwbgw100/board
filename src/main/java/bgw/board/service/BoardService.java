@@ -1,6 +1,7 @@
 package bgw.board.service;
 
 import bgw.board.mapper.BoardMapper;
+import bgw.board.util.UtilMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,15 +16,14 @@ import java.util.*;
 public class BoardService {
     private final BoardMapper boardMapper;
 
-    public List<Map<String, Object>> getBoardList(){
-        List<Map<String,Object>> data = boardMapper.selectBoardList();
+    public List<Map<String, Object>> getBoardList(Map<String,Object> paramMap){
+        UtilMap.getInstance().getPageParam(paramMap);
 
 
-    data.forEach(map ->{
-            map.forEach((key,value) ->{
-                log.info(key,value);
-            });
-        });
+        List<Map<String,Object>> data = boardMapper.selectBoardList(paramMap);
+
+
+
         return  data;
     };
     public void randomInsertBoard(){
