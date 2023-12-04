@@ -61,15 +61,15 @@ textarea:focus {
 
 
   <div class="card shadow mb-4">
-    <form  action="/board" th:method="${method} ?: 'post'">
+    <form  action="/board/write" th:method="${method} ?: 'post'">
       <div class="card-body" style="min-height: 500px;height: 80%;">
         <div class="input_group">
           <label for="title">제목:</label>
           <input class="input" type="text" id="title" name="title" required>
         </div>
         <div>
-          <label for="author">작성자:</label>
-          <input type="text" id="author" name="author" required disabled="disabled" value="bgwbgw100">
+          <label for="id">작성자:</label>
+          <input type="text" id="id" name="id" required readonly value="bgwbgw100">
         </div>
         <div >
           <label for="content">내용:</label>

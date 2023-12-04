@@ -1,17 +1,15 @@
 package bgw.board.controller;
 
+import bgw.board.dto.BoardDTO;
 import bgw.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.validation.Valid;
+
 
 @Controller
 @Slf4j
@@ -32,6 +30,13 @@ public class BoardController {
         return "write";
     }
 
+    @PostMapping("write")
+    public String postBoard(@Valid @ModelAttribute BoardDTO boardDTO){
+
+        boardService.postBoard(boardDTO);
+
+        return "redirect:/board";
+    }
 
 
 }

@@ -9,6 +9,17 @@
         LIMIT #{countRow} OFFSET #{startRow}
     </select>
 
+    <insert id="insertBoard" parameterType="BoardDTO">
+        INSERT INTO  BOARD_VARCHAR
+        (ID,TITLE,CONTENT,REGIST_DT,UPDATE_DT)
+        VALUES
+        (#{id}
+        ,#{title}
+        ,#{content}
+        ,NOW()
+        ,NOW()
+        )
+    </insert>
 
 
 

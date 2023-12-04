@@ -96,13 +96,6 @@ class Board{
         tbody.insertAdjacentHTML("beforeend", tagStr);
 
 
-        data.forEach(obj =>{
-            Object.entries(obj).forEach(([key,val]) => {
-            
-                console.log(key,val);
-
-            })
-        })
         
     }
 

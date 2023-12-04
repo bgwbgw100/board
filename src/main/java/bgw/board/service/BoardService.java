@@ -1,5 +1,6 @@
 package bgw.board.service;
 
+import bgw.board.dto.BoardDTO;
 import bgw.board.mapper.BoardMapper;
 import bgw.board.util.UtilMap;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,12 @@ public class BoardService {
 
 
         return  data;
-    };
+    }
+
+    public void postBoard(BoardDTO boardDTO){
+        boardMapper.insertBoard(boardDTO);
+    }
+
     public void randomInsertBoard(){
         List<LocalDate> localDates = new ArrayList<>();
 
