@@ -4,8 +4,14 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bgw.board.mapper.BoardMapper">
     <select id="selectBoardList" resultType="CamelMap" >
-        SELECT *
-        FROM   BOARD_VARCHAR
+
+        SELECT  BOARD_ID
+               ,ID
+               ,TITLE
+               ,REGIST_DT
+               ,UPDATE_DT
+        FROM   BOARD_VARCHAR   FORCE INDEX (REGIST_DT)
+        ORDER BY REGIST_DT DESC
         LIMIT #{countRow} OFFSET #{startRow}
     </select>
 
@@ -19,6 +25,28 @@
         ,NOW()
         ,NOW()
         )
+    </insert>
+
+    <insert id="insertBoardBatch" parameterType="list">
+        INSERT INTO BOARD_VARCHAR
+        (ID,TITLE,CONTENT,REGIST_DT,UPDATE_DT)
+        SELECT  '' AS ID
+                ,'' AS TITLE
+                ,'' AS CONTENT
+                ,NULL AS REGIST_DT
+                ,NULL AS UPDATE_DT
+        WHERE '' != ''
+    <foreach collection="list" item="item">
+        UNION ALL
+        SELECT #{item.id} AS ID
+               ,#{item.title} AS TITLE
+               ,#{item.content} AS CONTENT
+               ,#{item.registDt} AS REGIST_DT
+               ,#{item.updateDt} AS UPDATE_DT
+        FROM DUAL
+
+    </foreach>
+
     </insert>
 
 

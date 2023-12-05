@@ -39,4 +39,9 @@ public class BoardResponseController {
 
     }
 
+    @GetMapping("randomInsertBoard")
+    public void randomInsertBoard(){
+        boardService.randomInsertBoard();
+    }
+
 }
