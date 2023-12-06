@@ -15,6 +15,17 @@
         LIMIT #{countRow} OFFSET #{startRow}
     </select>
 
+    <select id="selectBoardDetail" parameterType="int">
+        SELECT  BOARD_ID
+                ,ID
+                ,TITLE
+                ,CONTENT
+                ,REGIST_DT
+                ,UPDATE_DT
+        FROM   BOARD_VARCHAR
+        WHERE BOARD_ID = #{boardId}
+    </select>
+
     <insert id="insertBoard" parameterType="BoardDTO">
         INSERT INTO  BOARD_VARCHAR
         (ID,TITLE,CONTENT,REGIST_DT,UPDATE_DT)
@@ -48,6 +59,7 @@
     </foreach>
 
     </insert>
+
 
 
 

@@ -38,5 +38,12 @@ public class BoardController {
         return "redirect:/board";
     }
 
+    @GetMapping(value = "detail/{boardId}" )
+    public String detail(@PathVariable("boardId") int boardId){
+        boardService.detailBoard(boardId);
+
+        return "detail";
+    }
+
 
 }

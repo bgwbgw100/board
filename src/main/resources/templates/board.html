@@ -12,6 +12,12 @@
             width: 100px;
             text-align: center;
         }
+        .boardTr{
+
+        }
+        .boardTr:hover{
+            cursor: pointer;
+        }
 
     </style>
 
@@ -150,9 +156,16 @@
 
     }
 
+    board.rowClickEvent = (data,tag)=>{
+        window.location.href ="board/detail/"+data.boardId
+
+    };
+
     document.querySelector("#testDataInsert").addEventListener("click",()=>{
         fetch("board/randomInsertBoard");
     });
+
+
 </script>
 
 

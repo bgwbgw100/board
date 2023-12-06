@@ -2,14 +2,16 @@ class Board{
     #nameStr;
     #name;
     #set;
-
+    dataList = [];
+    rowClickEvent;
+    #classThis = this;
     constructor(name) {
         this.#nameStr= name;
         this.#name = document.querySelector("#"+name);
         this.#set = {};
-        this.init()
+        this.#init()
     }
-    init(){
+    #init(){
         if(!this.#name){
             alert("삽입할 태그를 지정하세요"); 
         }
@@ -72,11 +74,19 @@ class Board{
         .then(data =>{
 
             this.#write(data);
-
+            this.#addEvent();
         }).catch(error => ()=>{
             alert("Error");
             console.error("error");
         })
+    }
+
+    escapeHtml(str){
+        return str.replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
     }
     #write(data) {
         const col = this.#set.col
@@ -84,20 +94,38 @@ class Board{
         tbody.innerHTML="";
 
         let tagStr = "";
+        let idx = 0;
         data.forEach(obj =>{
-            tagStr += "<tr>";
+            tagStr += `<tr class='boardTr' data-idx ='${idx}'>`;
             col.forEach(colObj =>{
-                tagStr += `<td>${obj[colObj.name]}</td>`;
+                let str  = obj[colObj.name] +"";
+                tagStr += `<td>${this.escapeHtml(str)}</td>`;
             });
             tagStr += "</tr>"
-            tagStr += "</tr>"
+            this.dataList.push(obj);
+            idx += 1;
         });
 
         tbody.insertAdjacentHTML("beforeend", tagStr);
-
-
-        
     }
+
+    #addEvent(){
+        let tr =  document.querySelectorAll(".boardTr");
+        for (const trElement of tr) {
+            let idxStr = trElement.dataset.idx;
+            let idx = Number(idxStr);
+
+            trElement.addEventListener( "click",(event)=>{
+
+                let tag = event.currentTarget;
+                if(typeof(this.rowClickEvent) != "function") return;
+
+                this.rowClickEvent(this.dataList[Number(idx)],tag)
+            })
+        }
+    }
+
+
 
     #checkSet(){
 

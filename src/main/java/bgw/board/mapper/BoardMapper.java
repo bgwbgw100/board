@@ -15,5 +15,6 @@ public interface BoardMapper {
 
     void insertBoardBatch(List<BoardDTO> boardDTOS);
 
+    BoardDTO selectBoardDetail(int boardId);
 
 }

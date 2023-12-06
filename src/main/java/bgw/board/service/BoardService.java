@@ -65,4 +65,9 @@ public class BoardService {
         LocalDate randomDate = startDate.plusDays(randomDays); // 랜덤한 일수를 시작 날짜에 더하여 랜덤 날짜를 생성
         return randomDate;
     }
+
+    public BoardDTO detailBoard(int boardId) {
+
+        return boardMapper.selectBoardDetail(boardId);
+    }
 }
